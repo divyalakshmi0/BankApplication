@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - CashConnect</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+    background: url('https://media.istockphoto.com/id/494913012/vector/currency-symbol-background.jpg?s=612x612&w=0&k=20&c=VAR0mhSGmZkHNa9wwX46-XFO9WmKiTBOo9n-ee5S2n8=') no-repeat center center fixed;
+    background-size: cover;
+    color: #000000; /* Dark Gray for primary text */
+
+        }
+
+        .navbar-custom {
+
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar-custom a {
+            color: #ffffff !important;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://media.istockphoto.com/id/494913012/vector/currency-symbol-background.jpg?s=612x612&w=0&k=20&c=VAR0mhSGmZkHNa9wwX46-XFO9WmKiTBOo9n-ee5S2n8=') no-repeat center center;
+            background-size: cover;
+        }
+
+        .hero-section h1 {
+            color: #13120f;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            color:#333333;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+
+        .container {
+            max-width: 700px;
+            padding: 20px; /* Reduced padding */
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            margin-top: 80px; /* To avoid overlap with the navbar */
+        }
+
+        .container h2 {
+            color:#333333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .form-group label {
+            color:#333333; /* Changed to match theme */
+            text-align: left;
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            border: 1px solid #9e9898;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .btn {
+            background-color: #007BFF; /* Vibrant blue for buttons */
+    color: #FFFFFF; /* White text on buttons */
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform for hover */
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .custom-link {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .custom-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #000000;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .section p {
+            font-weight:500px;
+            color: #000000;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons a {
+            color: #000000;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #0056b3;
+        }
+
+        .testimonials {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .map-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+
+        .testimonial-card {
+            background-color: rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+        }
+
+        .contact-section {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="#">CashConnect</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#testimonials">Testimonials</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="hero-section">
+    <h1>Welcome to CashConnect</h1>
+    <p style="color: #ffc700;">Your trusted partner in financial services.</p>
+    <div class="container" style="width: 500px; margin-top: 30px;">
+        <form method="post" action="/login">
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" class="form-control" name="username" required />
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" class="form-control" name="password" required />
+            </div>
+            <button type="submit" class="btn btn-block">Login</button>
+        </form>
+        <p class="text-center mt-3">Don't have an account? <a href="/register" class="custom-link">Register here</a></p>
+
+        <div th:if="${param.error}" class="alert alert-danger mt-3 text-center">
+            Invalid username or password.
+        </div>
+    </div>
+</div>
+
+<div class="section" id="about">
+    <h2>About Us</h2>
+    <p>At CashConnect, we are committed to providing exceptional banking services tailored to meet the diverse needs of our customers. Founded on the principles of integrity, innovation, and customer-centricity, we strive to empower individuals and businesses with the financial tools they need to succeed.
+        <br>
+        Our team of experienced professionals is dedicated to delivering personalized service and expert advice, ensuring that you have the support you need at every step of your financial journey. Whether you are looking for personal loans, business financing, or investment solutions, CashConnect is here to help you achieve your financial goals.
+
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://3.imimg.com/data3/QE/IL/MY-468428/personal-loan.png" class="card-img-top" alt="Personal Loans">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Loans</h5>
+                        <p class="card-text">Flexible personal loans to meet your needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT10QxmuiyGALZaoIRdz47tg7vufHsZZi7VMA&s" class="card-img-top" alt="Home Loans">
+                    <div class="card-body">
+                        <h5 class="card-title">Home Loans</h5>
+                        <p class="card-text">Affordable home loans with competitive rates.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ51OHhks4vwmg-K16IIKY5Eg0EScAN11Py2g&s" class="card-img-top" alt="Business Loans">
+                    <div class="card-body">
+                        <h5 class="card-title">Business Loans</h5>
+                        <p class="card-text">Support for your business growth with our loans.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section testimonials" id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="container" style="width: 600px; height: 500px;">
+        <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" style="height: 600px; width: 560px;">
+                <div class="carousel-item active">
+                    <div class="testimonial-card">
+                        <img src="https://www.zoho.com/inventory/case-study/images/maxime-loiselle.jpg" class="testimonial-img" alt="Jane Doe">
+                        <br><br><br>
+
+                        <p class="card-text">"CashConnect has transformed my banking experience. Their customer service is top-notch, and I always feel valued as a customer. The online banking platform is user-friendly and makes managing my finances a breeze!"</p>
+                        <b>- Jane</b>
+                        <br><br><br><br>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial-card">
+                        <img src="https://middletownchristian.org/wp-content/uploads/2016/07/woman-testimonial-sidebar.jpg" class="testimonial-img" alt="Emily Davis">
+                        <br><br><br><p class="card-text">"I recently took out a personal loan with CashConnect, and the process was incredibly smooth. The staff guided me through every step, and I received my funds quickly. I highly recommend them!"</p>
+                        <b>- Emily Davis</b>
+                        <br><br><br><br>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial-card">
+                        <img src="https://media.istockphoto.com/id/483734604/photo/close-up-of-a-mature-man-smiling-at-home.jpg?s=612x612&w=0&k=20&c=zeY_d6FILSYYi4qC05sPoGYHoiKOclYyUItGbZwYCrg=" class="testimonial-img" alt="John Smith">
+                        <br><br><br><p class="card-text">"As a small business owner, I rely on CashConnect for my business banking needs. Their team understands my challenges and provides solutions that help my business grow. I couldn't ask for a better banking partner!" </p>
+                        <b>- Smith</b>
+                        <br><br><br><br>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial-card">
+                        <img src="https://st.depositphotos.com/8214686/53566/i/450/depositphotos_535666422-stock-photo-studio-head-shot-of-a.jpg" class="testimonial-img" alt="Sarah Lee">
+                        <br><br><br><p class="card-text">"I switched to CashConnect after being frustrated with my previous bank. The difference has been night and day! Their customer support is always available, and they genuinely care about helping me achieve my financial goals."</p>
+                        <b>- Sarah Lee</b>
+                        <br><br><br><br>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrOsjpVqjAsjJ636D6lp5tOyPDPDnVRXB2trpmdQXufmHqSi5fWioftLaLINexeaMqAds&usqp=CAU" class="testimonial-img" alt="Michael Brown">
+                        <br><br><br><p class="card-text">"CashConnect has been my go-to for all my banking needs. From savings accounts to investment advice, their knowledgeable staff has always been there to assist me. I feel confident in my financial future with them!"</p>
+                        <b>- Michael Brown</b>
+                        <br><br><br><br>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="section contact-section" id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need assistance, please reach out to us:</p>
+    <p>Email: support@cashconnect.com</p>
+    <p>Phone: (123) 456-7890</p>
+    <p>Address: 123 CashConnect St, Bank City, BC 12345</p>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509123!2d144.9537353153164!3d-37.81627997975157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f0f0f0f%3A0x0!2zMzcnMzQyLjAiUyAxNDRyMTUuNSJ9!5e0!3m2!1sen!2sau!4v1616161616161" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 CashConnect. All rights reserved. | <a href="#" class="custom-link">Privacy Policy</a> | <a href="#" class="custom-link">Terms of Service</a></p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
