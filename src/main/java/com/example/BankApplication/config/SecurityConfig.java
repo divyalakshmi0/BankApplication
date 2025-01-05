@@ -26,27 +26,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()) // Consider enabling CSRF protection in production
+        http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/register").permitAll() // Allow registration without authentication
-                .anyRequest().authenticated()) // All other requests require authentication
+                .requestMatchers("/register").permitAll()
+                .anyRequest().authenticated())
             .formLogin(form -> form
-                .loginPage("/login") // Custom login page
-                .defaultSuccessUrl("/dashboard", true) // Redirect to dashboard on successful login
-                .permitAll()) // Allow everyone to access the login page
+                .loginPage("/login")
+                .defaultSuccessUrl("/dashboard", true)
+                .permitAll())
             .logout(logout -> logout
-                .invalidateHttpSession(true) // Invalidate session on logout
-                .clearAuthentication(true) // Clear authentication
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Logout URL
-                .logoutSuccessUrl("/login?logout") // Redirect to login page after logout
-                .permitAll()) // Allow everyone to access logout
-            .headers(header -> header
-                .frameOptions(frameOptions -> frameOptions.sameOrigin())); // Allow iframe from the same origin
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll())
+            .headers(header -> header.frameOptions(frameOptions -> frameOptions.sameOrigin()));
         return http.build();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(accountService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(account Service).passwordEncoder(passwordEncoder());
     }
 }
