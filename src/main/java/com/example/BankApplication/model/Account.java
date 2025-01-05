@@ -24,21 +24,12 @@ public class Account implements UserDetails {
     public Account() {
     }
 
-    public Account(Long id, String username, String password, BigDecimal balance, List<Transaction> transactions, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
+    public Account(String username, String password, BigDecimal balance, List<Transaction> transactions, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
         this.balance = balance;
         this.transactions = transactions;
         this.authorities = authorities;
-    }
-
-    public Account(String username, String password, BigDecimal balance, List<Transaction> transactions, Collection<? extends GrantedAuthority> authorities) {
-            this.username=username;
-            this.password=password;
-            this.balance=balance;
-            this.transactions=transactions;
-            this.authorities=authorities;
     }
 
     public Long getId() {
