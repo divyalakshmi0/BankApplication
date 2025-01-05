@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Autowired
-    private AccountService accountService;
+    AccountService accountService;
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -46,6 +46,6 @@ public class SecurityConfig {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(account Service).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(accountService).passwordEncoder(passwordEncoder());
     }
 }
